@@ -54,16 +54,16 @@ if __name__ == "__main__":
 
     file_paths = get_list_files(run_date)
     print(file_paths)
-    # if not all([f.exists() for f in file_paths]):
-    #     raise FileNotFoundError("Some radar files are not available")
+    if not all([f.exists() for f in file_paths]):
+        raise FileNotFoundError("Some radar files are not available")
 
-    # x_array, mask = get_input_array(file_paths)
+    x_array, mask = get_input_array(file_paths)
 
-    # forecast = make_forecast(x_array)
+    forecast = make_forecast(x_array)
 
-    # # Postprocessing : put NaN outside of radar field
-    # mask = np.tile(mask, (forecast.shape[0], 1, 1))
-    # forecast = np.where(mask == 1, np.nan, forecast)
+    # Postprocessing : put NaN outside of radar field
+    mask = np.tile(mask, (forecast.shape[0], 1, 1))
+    forecast = np.where(mask == 1, np.nan, forecast)
 
-    # dest_path = PLOT_PATH / run_date.strftime("%Y-%m-%d_%Hh%M.gif")
-    # plot_gif_forecast(forecast, run_date, dest_path)
+    dest_path = PLOT_PATH / run_date.strftime("%Y-%m-%d_%Hh%M.gif")
+    plot_gif_forecast(forecast, run_date, dest_path)
