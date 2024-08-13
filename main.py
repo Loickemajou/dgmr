@@ -54,8 +54,10 @@ if __name__ == "__main__":
 
     file_paths = get_list_files(run_date)
     print(file_paths)
-    if not all([f.exists() for f in file_paths]):
-        raise FileNotFoundError("Some radar files are not available")
+    # if not all([f.exists() for f in file_paths]):
+    #     raise FileNotFoundError("Some radar files are not available")
+    for f in file¨_paths:
+        print(f.exist())
 
     x_array, mask = get_input_array(file_paths)
 
