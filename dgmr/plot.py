@@ -64,15 +64,15 @@ NORM = mcolors.BoundaryNorm(BOUNDARIES, CMAP.N, clip=True)
 """BoundaryNorm: norm for the reflectivity colormap"""
 
 DOMAIN = {
-    "upper_left": (-9.965, 53.670),
-    "lower_right": (11.976055, 37.457460),
-    "upper_right": (17.564203, 52.548138),
-    "lower_left": (-6.715173, 38.144933),
+    "upper_left": (3.31294, 51.5059),  # Upper left corner (longitude, latitude)
+    "lower_right": (7.57364, 49.49744),  # Lower right corner
+    "upper_right": (7.57364, 51.5059),  # Upper right corner
+    "lower_left": (3.31294, 49.49744),  # Lower left corner
 }
 
 
 def domain_to_extent(domain):
-    crs = Stereographic(central_latitude=45)
+    crs = Stereographic(central_latitude=50)  # Central latitude for Belgium
     lower_right = crs.transform_point(*domain["lower_right"], PlateCarree())
     upper_right = crs.transform_point(*domain["upper_right"], PlateCarree())
     lower_left = crs.transform_point(*domain["lower_left"], PlateCarree())
