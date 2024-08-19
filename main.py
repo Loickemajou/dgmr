@@ -9,6 +9,7 @@ from dgmr.data import get_input_array, get_list_files
 from dgmr.model import load_model, predict
 from dgmr.plot import plot_gif_forecast
 from dgmr.settings import INPUT_IMG_SIZE, PLOT_PATH, RADAR_IMG_SIZE
+from dgmr.settings import DATA_PATH
 
 
 def make_forecast(x_array: np.ndarray) -> np.ndarray:
@@ -40,19 +41,9 @@ def make_forecast(x_array: np.ndarray) -> np.ndarray:
 
 if __name__ == "__main__":
 
-    date = dt.datetime.now(dt.timezone.utc)    
-    date = date - dt.timedelta(  # round date to 5 minutes
-        minutes=date.minute % 5,
-        seconds=date.second,
-        microseconds=date.microsecond,
-    )
-    run_date = date - dt.timedelta(
-        minutes=5
-    )  # Remove 5min to be sure data was downloaded
-
     print(f"---> Making DGMR forecast for date {run_date}")
 
-    file_paths = get_list_files(run_date)
+    file_paths = get_list_files(DATA_PATH)
     print(file_paths)
     if not all([f.exists() for f in file_paths]):
         raise FileNotFoundError("Some radar files are not available")
