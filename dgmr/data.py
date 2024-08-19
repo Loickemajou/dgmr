@@ -13,7 +13,7 @@ def get_list_files(date: dt.datetime) -> List[Path]:
     delta = dt.timedelta(minutes=TIMESTEP)
     dates = [date + i * delta for i in range(-INPUT_STEPS + 1, 1)]
     # filenames = [d.strftime("%Y_%m_%d_%H_%M.rad.becomp00.image.rate.becomp00_comp_sri.hdf") for d in dates]
-    filenames = [f"{d.year}0{d:%m}{d:%d}{((d.hour)*3600)+((d.minute)*60)}.zfill(6).rad.becomp00.image.rate.becomp00_comp_sri.hdf" for d in dates]
+    filenames = [f"{d.year}{d:%m}{d:%d}{((d.hour)*3600)+((d.minute)*60)}.zfill(6).rad.becomp00.image.rate.becomp00_comp_sri.hdf" for d in dates]
     return [DATA_PATH / f for f in filenames]
 
 
