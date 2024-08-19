@@ -57,9 +57,7 @@ if __name__ == "__main__":
     if not all([f.exists() for f in file_paths]):
         raise FileNotFoundError("Some radar files are not available")
    
-    paths=[str(path) for path in file_paths]
-    print(paths)
-    x_array, mask = get_input_array(paths)
+    x_array, mask = get_input_array(file_paths)
 
     forecast = make_forecast(x_array)
 
