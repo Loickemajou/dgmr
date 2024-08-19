@@ -14,8 +14,8 @@ def get_list_files(date: dt.datetime) -> List[Path]:
     dates = [date + i * delta for i in range(-INPUT_STEPS + 1, 1)]
     # filenames = [d.strftime("%Y_%m_%d_%H_%M.rad.becomp00.image.rate.becomp00_comp_sri.hdf") for d in dates]
     filenames = [f"{d.year}{d:%m}{d:%d}{((d.hour)*6000)+((d.minute)*100):06}.rad.becomp00.image.rate.becomp00_comp_sri.hdf" for d in dates]
-    paths= [DATA_PATH / f for f in filenames]
-    return [str(path) for path in paths]
+    return [DATA_PATH / f for f in filenames]
+   
 
 
 def open_radar_file(path: Path) -> np.ndarray:
