@@ -21,7 +21,7 @@ def get_list_files(date: dt.datetime) -> List[Path]:
 def open_radar_file(path: Path) -> np.ndarray:
     with h5py.File(path, "r") as ds:
         array = np.array(ds["dataset1"]["data1"]["data"])
-        array=array.resize(array,(1536,1280))
+        array=array.resize((1536,1280))
     return array
 
 
