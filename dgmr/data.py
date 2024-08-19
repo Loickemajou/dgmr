@@ -22,6 +22,7 @@ def open_radar_file(path: Path) -> np.ndarray:
     with h5py.File(path, "r") as ds:
         array = np.array(ds["dataset1"]["data1"]["data"])
         array=array.resize((1536,1280))
+        print(array)
     return array
 
 
