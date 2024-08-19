@@ -40,10 +40,19 @@ def make_forecast(x_array: np.ndarray) -> np.ndarray:
 
 
 if __name__ == "__main__":
+    date = dt.datetime.now(timezone.utc)  
+    date = date - dt.timedelta(  # round date to 5 minutes
+        minutes=date.minute % 5,
+        seconds=date.second,
+        microseconds=date.microsecond,
+    )
+run_date = date - dt.timedelta(
+        minutes=5
+    ) 
 
     print(f"---> Making DGMR forecast for date {run_date}")
 
-    file_paths = get_list_files(DATA_PATH)
+    file_paths = get_list_files(run_date)
     print(file_paths)
     if not all([f.exists() for f in file_paths]):
         raise FileNotFoundError("Some radar files are not available")
