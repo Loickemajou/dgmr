@@ -23,7 +23,7 @@ def open_radar_file(path: Path) -> np.ndarray:
         print(ds)
         array = np.array(ds["dataset1"]["data1"]["data"])
         print(array)
-        array=array.resize((1536,1280))
+        array.resize((1536,1280))
         print(array)
     return array
 
