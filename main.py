@@ -40,7 +40,7 @@ def make_forecast(x_array: np.ndarray) -> np.ndarray:
 
 if __name__ == "__main__":
 
-    date = dt.datetime.now(dt.timezone.utc)
+    date = dt.datetime.now(dt.timezone.)    
     date = date - dt.timedelta(  # round date to 5 minutes
         minutes=date.minute % 5,
         seconds=date.second,
