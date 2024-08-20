@@ -22,6 +22,7 @@ def get_list_files(date: dt.datetime) -> List[Path]:
 def open_radar_file(path: Path) -> np.ndarray:
     with h5py.File(path, "r") as ds:
         array = np.array(ds["dataset1"]["data1"]["data"])
+        array = np.expand_dims(array, -1)  # Add channel dims
         print(array.shape)
         tensor = tf.convert_to_tensor(array)
         print(tensor.shape)
@@ -57,5 +58,5 @@ def get_input_array(paths: List[Path]) -> np.ndarray:
    
     print(array)
     array = array / 100 * 12  # Conversion from mm cumulated in 5min to mm/h
-    array = np.expand_dims(array, -1)  # Add channel dims
+   
     return array, mask
