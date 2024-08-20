@@ -24,7 +24,7 @@ def open_radar_file(path: Path) -> np.ndarray:
         array = np.array(ds["dataset1"]["data1"]["data"])
     return array
 
-def pad_along_axis(self, x, pad_size = 3, axis = 2):
+def pad_along_axis(x, pad_size = 3, axis = 2):
     '''
         Pad input to be divisible by 2. 
         height of 765 to 768
