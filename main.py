@@ -36,7 +36,7 @@ def make_forecast(x_array: np.ndarray) -> np.ndarray:
     # # We assemble the outputs where they overlap enough to avoir disontinuities
     # # Hence the 256 offset, to be well inside the receptive field of the model
     # forecast[:, :size_y, : size_x - 256] = output_nw[:, :, :-256]
-    forecast=predict(x_arrray)
+    forecast=predict(x_array)
     return forecast
 
 
