@@ -67,4 +67,4 @@ if __name__ == "__main__":
     forecast = np.where(mask == 1, np.nan, forecast)
 
     dest_path = PLOT_PATH / run_date.strftime("%Y-%m-%d_%Hh%M.gif")
-    plot_gif_forecast(forecast, run_date, dest_path)
+    plot_gif_forecast(forecast[0], run_date, dest_path)
