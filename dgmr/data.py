@@ -53,7 +53,7 @@ def get_input_array(paths: List[Path]) -> np.ndarray:
     mask = np.where(arrays[0] == 65535, 1, 0)
     arrays = [np.where(array == 65535, 0, array) for array in arrays]
     # Rescale to 1km resolution
-    arrays = [zoom(array, (0.5, 0.5)) for array in arrays]
+   
     mask = zoom(mask, (0.5, 0.5))
 
     array = np.stack(arrays)
