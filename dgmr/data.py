@@ -34,7 +34,7 @@ def get_input_array(paths: List[Path]) -> np.ndarray:
     arrays = [zoom(array, (0.5, 0.5)) for array in arrays]
     resized_array=[np.resize(array,(1536,1280)) for array in arrays]
     mask = zoom(mask, (0.5, 0.5))
-    mask=np.resize((1536,1280)
+    mask=np.resize(maks,(1536,1280))
 
     array = np.stack(resized_array)
     print(array.shape)
