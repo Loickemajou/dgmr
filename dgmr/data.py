@@ -1,6 +1,7 @@
 import datetime as dt
 from pathlib import Path
 from typing import List
+import tensorflow as tf
 
 import h5py
 import numpy as np
@@ -23,7 +24,18 @@ def open_radar_file(path: Path) -> np.ndarray:
         array = np.array(ds["dataset1"]["data1"]["data"])
     return array
 
+def pad_along_axis(self, x, pad_size = 3, axis = 2):
+    '''
+        Pad input to be divisible by 2. 
+        height of 765 to 768
+    '''
+    if pad_size <= 0:
+        return x
+    npad = [(0, 0)] * x.ndim
+    npad[axis] = (0, pad_size)
 
+    return tf.pad(x, paddings=npad, constant_values=0)
+      
 def get_input_array(paths: List[Path]) -> np.ndarray:
     arrays = [open_radar_file(path) for path in paths]
  
@@ -35,7 +47,10 @@ def get_input_array(paths: List[Path]) -> np.ndarray:
     mask = zoom(mask, (0.5, 0.5))
 
     array = np.stack(arrays)
-    print(array.shape)
+    tensor = tf.convert_to_tensor(array)
+    x = pad_along_axis(tensor, axis=0, pad_size=3)
+    x = pad_along_axis(x, axis=1, pad_size=68)
+    array = x.numpy()
     array = array / 100 * 12  # Conversion from mm cumulated in 5min to mm/h
     array = np.expand_dims(array, -1)  # Add channel dims
     return array, mask
