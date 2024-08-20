@@ -41,47 +41,50 @@ COLORS_REFLECTIVITY = [  # 14 colors
 CMAP = mcolors.ListedColormap(COLORS_REFLECTIVITY)
 """ListedColormap : reflectivity colormap from synopsis"""
 
-BOUNDARIES = [
+import numpy as np
+import matplotlib.colors as mcolors
+import cartopy.crs as ccrs
+
+# Adapt the BOUNDARIES list to reflectivity levels suitable for Belgium
+BOUNDARIES_BELGIUM = [
     0,
-    0.1,
-    0.4,
-    0.6,
-    1.2,
-    2.1,
-    3.6,
-    6.5,
-    12,
-    21,
-    36,
-    65,
-    120,
-    205,
-    360,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60,
+    70
 ]
-"""list of float: boundaries of the reflectivity colormap"""
 
-NORM = mcolors.BoundaryNorm(BOUNDARIES, CMAP.N, clip=True)
-"""BoundaryNorm: norm for the reflectivity colormap"""
-
-DOMAIN = {
+# Define the DOMAIN for Belgium with appropriate coordinates
+DOMAIN_BELGIUM = {
     "upper_left": (3.31294, 51.5059),  # Upper left corner (longitude, latitude)
     "lower_right": (7.57364, 49.49744),  # Lower right corner
     "upper_right": (7.57364, 51.5059),  # Upper right corner
-    "lower_left": (3.31294, 49.49744),  # Lower left corner
+    "lower_left": (3.31294, 49.49744)  # Lower left corner
 }
 
-
 def domain_to_extent(domain):
-    crs = Stereographic(central_latitude=50)  # Central latitude for Belgium
-    lower_right = crs.transform_point(*domain["lower_right"], PlateCarree())
-    upper_right = crs.transform_point(*domain["upper_right"], PlateCarree())
-    lower_left = crs.transform_point(*domain["lower_left"], PlateCarree())
+    crs = ccrs.Stereographic(central_latitude=50)  # Central latitude for Belgium
+    lower_right = crs.transform_point(*domain["lower_right"], ccrs.PlateCarree())
+    upper_right = crs.transform_point(*domain["upper_right"], ccrs.PlateCarree())
+    lower_left = crs.transform_point(*domain["lower_left"], ccrs.PlateCarree())
     maxy, miny = upper_right[1], lower_left[1]
     minx, maxx = lower_left[0], lower_right[0]
     return (minx, maxx, miny, maxy)
 
+# Calculate the extent for Belgium
+EXTENT_BELGIUM = domain_to_extent(DOMAIN_BELGIUM)
 
-EXTENT = domain_to_extent(DOMAIN)
+# Create a normalization object using the boundaries for Belgium
+NORM_BELGIUM = mcolors.BoundaryNorm(BOUNDARIES_BELGIUM, len(BOUNDARIES_BELGIUM) - 1, clip=True)
 
 
 @gif.frame
