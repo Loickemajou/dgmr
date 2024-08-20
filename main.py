@@ -14,7 +14,7 @@ from dgmr.settings import DATA_PATH
 
 def make_forecast(x_array: np.ndarray) -> np.ndarray:
     """Makes a rainfall forecast on the full French radar domain."""
-
+    print(x_array.shape)
     size_y, size_x = INPUT_IMG_SIZE
 
     # The pretrained model has a predefined input/output shape, so we have to split the
