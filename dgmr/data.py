@@ -33,10 +33,10 @@ def get_input_array(paths: List[Path]) -> np.ndarray:
     # Put values outside radar field to 0
     mask = np.where(arrays[0] == 65535, 1, 0)
     arrays = [np.where(array == 65535, 0, array) for array in arrays]
-    print(arrays.shape)
+    print(np.array(arrays).shape)
     # Rescale to 1km resolution
     arrays = [zoom(array, (0.5, 0.5)) for array in arrays]
-    print(arrays.shape)
+    print(np.array(arrays).shape)
     mask = zoom(mask, (0.5, 0.5))
 
     array = np.stack(arrays)
