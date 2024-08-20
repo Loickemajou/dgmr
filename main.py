@@ -19,10 +19,10 @@ def make_forecast(x_array: np.ndarray) -> np.ndarray:
 
     # The pretrained model has a predefined input/output shape, so we have to split the
     # domain in 2 parts and make 2 forecasts
-    input_nw = x_array[:, :size_y, :size_x, :]
-    tensor_nw = tf.convert_to_tensor(input_nw, dtype=tf.float32)
-    input_se = x_array[:, -size_y:, -size_x:, :]
-    tensor_se = tf.convert_to_tensor(input_se, dtype=tf.float32)
+    # input_nw = x_array[:, :size_y, :size_x, :]
+    # tensor_nw = tf.convert_to_tensor(input_nw, dtype=tf.float32)
+    # input_se = x_array[:, -size_y:, -size_x:, :]
+    # tensor_se = tf.convert_to_tensor(input_se, dtype=tf.float32)
 
     model = load_model(INPUT_IMG_SIZE)
 
