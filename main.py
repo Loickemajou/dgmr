@@ -26,16 +26,17 @@ def make_forecast(x_array: np.ndarray) -> np.ndarray:
 
     model = load_model(INPUT_IMG_SIZE)
 
-    print("Forecast on North-West...")
-    output_nw = predict(tensor_nw, model)[0]
-    print("Forecast on South-East...")
-    output_se = predict(tensor_se, model)[0]
+    # print("Forecast on North-West...")
+    # output_nw = predict(tensor_nw, model)[0]
+    # print("Forecast on South-East...")
+    # output_se = predict(tensor_se, model)[0]
 
-    forecast = np.ones((output_nw.shape[0], RADAR_IMG_SIZE[0], RADAR_IMG_SIZE[1]))
-    forecast[:, -size_y:, -size_x:] = output_se
-    # We assemble the outputs where they overlap enough to avoir disontinuities
-    # Hence the 256 offset, to be well inside the receptive field of the model
-    forecast[:, :size_y, : size_x - 256] = output_nw[:, :, :-256]
+    # forecast = np.ones((output_nw.shape[0], RADAR_IMG_SIZE[0], RADAR_IMG_SIZE[1]))
+    # forecast[:, -size_y:, -size_x:] = output_se
+    # # We assemble the outputs where they overlap enough to avoir disontinuities
+    # # Hence the 256 offset, to be well inside the receptive field of the model
+    # forecast[:, :size_y, : size_x - 256] = output_nw[:, :, :-256]
+    forecast=predict(x_arrray)
     return forecast
 
 
