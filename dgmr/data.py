@@ -32,11 +32,9 @@ def get_input_array(paths: List[Path]) -> np.ndarray:
     arrays = [np.where(array == 65535, 0, array) for array in arrays]
     # Rescale to 1km resolution
     arrays = [zoom(array, (0.5, 0.5)) for array in arrays]
-    resized_array=[np.resize(array,(1536,1280)) for array in arrays]
     mask = zoom(mask, (0.5, 0.5))
-    mask=np.resize(mask,(1536,1280))
 
-    array = np.stack(resized_array)
+    array = np.stack(arrays)
     print(array.shape)
     array = array / 100 * 12  # Conversion from mm cumulated in 5min to mm/h
     array = np.expand_dims(array, -1)  # Add channel dims
