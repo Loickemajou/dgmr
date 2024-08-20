@@ -46,7 +46,7 @@ import matplotlib.colors as mcolors
 import cartopy.crs as ccrs
 
 # Adapt the BOUNDARIES list to reflectivity levels suitable for Belgium
-BOUNDARIES = [
+BOUNDARIES_BELGIUM = [
     0,
     0.1,
     0.4,
