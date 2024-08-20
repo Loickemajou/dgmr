@@ -46,21 +46,22 @@ import matplotlib.colors as mcolors
 import cartopy.crs as ccrs
 
 # Adapt the BOUNDARIES list to reflectivity levels suitable for Belgium
-BOUNDARIES_BELGIUM = [
+BOUNDARIES = [
     0,
-    5,
-    10,
-    15,
-    20,
-    25,
-    30,
-    35,
-    40,
-    45,
-    50,
-    55,
-    60,
-    70
+    0.1,
+    0.4,
+    0.6,
+    1.2,
+    2.1,
+    3.6,
+    6.5,
+    12,
+    21,
+    36,
+    65,
+    120,
+    205,
+    360,
 ]
 
 # Define the DOMAIN for Belgium with appropriate coordinates
