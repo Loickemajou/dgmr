@@ -97,9 +97,9 @@ def plot_forecast(y_hat: list, run_date: datetime, delta: int):
     ax = plt.axes(projection=Stereographic(central_latitude=45))
 
     plot_kwargs = {
-        "extent": EXTENT,
+        "extent": EXTENT_BELGIUM,
         "interpolation": "none",
-        "norm": NORM,
+        "norm": NORM_BELGIUM,
         "cmap": CMAP,
     }
 
