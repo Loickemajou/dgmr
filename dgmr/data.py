@@ -51,6 +51,7 @@ def get_input_array(paths: List[Path]) -> np.ndarray:
     x = pad_along_axis(tensor, axis=0, pad_size=3)
     x = pad_along_axis(x, axis=1, pad_size=68)
     array = x.numpy()
+    print(array)
     array = array / 100 * 12  # Conversion from mm cumulated in 5min to mm/h
     array = np.expand_dims(array, -1)  # Add channel dims
     return array, mask
