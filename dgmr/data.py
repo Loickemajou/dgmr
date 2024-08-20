@@ -32,7 +32,7 @@ def get_input_array(paths: List[Path]) -> np.ndarray:
     arrays = [np.where(array == 65535, 0, array) for array in arrays]
     # Rescale to 1km resolution
     arrays = [zoom(array, (0.5, 0.5)) for array in arrays]
-    resized-array=[np.resize(array,(1536,1280)) for array in arrays]
+    resized_array=[np.resize(array,(1536,1280)) for array in arrays]
     mask = zoom(mask, (0.5, 0.5))
 
     array = np.stack(resized_array)
