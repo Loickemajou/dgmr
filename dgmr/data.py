@@ -53,8 +53,11 @@ def get_input_array(paths: List[Path]) -> np.ndarray:
     mask = np.where(arrays[0] == 65535, 1, 0)
     arrays = [np.where(array == 65535, 0, array) for array in arrays]
     # Rescale to 1km resolution
-   
-    mask = zoom(mask, (0.5, 0.5))
+    tensor = tf.convert_to_tensor(mask)
+    mask = pad_along_axis(mask, axis=0, pad_size=3)
+    mask= pad_along_axis(mask, axis=1, pad_size=68)
+    mask=mask.numpy()
+    
 
     array = np.stack(arrays)
   
