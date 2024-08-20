@@ -47,9 +47,12 @@ def get_input_array(paths: List[Path]) -> np.ndarray:
     mask = zoom(mask, (0.5, 0.5))
 
     array = np.stack(arrays)
+    print(array.shape)
     tensor = tf.convert_to_tensor(array)
+    print(tensor.shape)
     x = pad_along_axis(tensor, axis=0, pad_size=3)
     x = pad_along_axis(x, axis=1, pad_size=68)
+    x=tf.image.resize(x,(1536,1280))
     array = x.numpy()
     print(array)
     array = array / 100 * 12  # Conversion from mm cumulated in 5min to mm/h
