@@ -58,7 +58,7 @@ def get_input_array(paths: List[Path]) -> np.ndarray:
 
     array = np.stack(arrays)
   
-    print(array)
+    print(array.shape)
     array = array / 100 * 12  # Conversion from mm cumulated in 5min to mm/h
     array = np.expand_dims(array, -1)  # Add channel dims
    
