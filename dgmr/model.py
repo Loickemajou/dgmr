@@ -28,7 +28,7 @@ def load_model(image_size: tuple):
     return model
 
 
-def predict(x: tf.Tensor, model, num_members=1):
+def predict(x: tf.Tensor, model, num_members=4):
     """Makes a prediction from the DGMR TF-Hub snapshot.
 
     Args:
