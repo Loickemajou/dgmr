@@ -50,13 +50,12 @@ def get_input_array(paths: List[Path]) -> np.ndarray:
     arrays = [open_radar_file(path) for path in paths]
  
     # Put values outside radar field to 0
-    mask = np.where(arrays[0] == 65535, 1, 0)
+    # mask = np.where(arrays[0] == 65535, 1, 0)
     arrays = [np.where(array == 65535, 0, array) for array in arrays]
     # Rescale to 1km resolution
-    tensor = tf.convert_to_tensor(mask)
-    mask = pad_along_axis(mask, axis=0, pad_size=3)
-    mask= pad_along_axis(mask, axis=1, pad_size=68)
-    mask=mask.numpy()
+    mask =arrays[0]
+    mask[mask==32768] = 1
+    mask[mask==65535] = 0
     
 
     array = np.stack(arrays)
