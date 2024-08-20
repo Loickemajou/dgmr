@@ -29,7 +29,9 @@ def open_radar_file(path: Path) -> np.ndarray:
         x = pad_along_axis(tensor, axis=0, pad_size=3)
         x = pad_along_axis(x, axis=1, pad_size=68)
         x=tf.image.resize(x,(1536,1280))
+        
         array = x.numpy()
+        array=np.squeeze(array)
     return array
 
 def pad_along_axis(x, pad_size = 3, axis = 2):
@@ -55,8 +57,9 @@ def get_input_array(paths: List[Path]) -> np.ndarray:
     mask = zoom(mask, (0.5, 0.5))
 
     array = np.stack(arrays)
-   
+  
     print(array)
     array = array / 100 * 12  # Conversion from mm cumulated in 5min to mm/h
+    array = np.expand_dims(array, -1)  # Add channel dims
    
     return array, mask
